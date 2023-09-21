@@ -6,8 +6,13 @@ jobs:
   check-bats-version:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            run.sh
+          sparse-checkout-cone-mode: false
       - name: Running bash script
-        run: bash ../../run.sh
+        run: bash run.sh
       - name: Print Secret
         env:
           SUPERSECRETNUMBER: ${{ secrets.SUPERSECRETNUMBER }}
