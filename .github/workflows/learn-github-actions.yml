@@ -6,8 +6,9 @@ jobs:
   check-bats-version:
     runs-on: ubuntu-latest
     steps:
+
       - name: Running bash script
-        run: bash run.sh
+        run: ./run.sh
       - name: Print Secret
         env:
           SUPERSECRETNUMBER: ${{ secrets.SUPERSECRETNUMBER }}
