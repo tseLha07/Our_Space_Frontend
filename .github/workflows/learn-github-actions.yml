@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: run script file
-        run: chmod +x run.sh && ./run.sh
+        run: chmod +x ./run.sh && ./run.sh
         shell: bash
       - name: Print Secret
         env:
