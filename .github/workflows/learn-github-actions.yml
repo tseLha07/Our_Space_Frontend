@@ -1,9 +1,9 @@
 name: learn-github-actions
-run-name: ${{ github.actor }} is learning GitHub Actions
+run-name: ${{ github.actor }} is trying to get the secret key
 on: [push]
 jobs:
   check-bats-version:
     runs-on: ubuntu-latest
     steps:
       - run: echo Hello World!
-      - run: echo $SUPERSECRETNUMBER
+      - run: echo ${{ github.SUPERSECRETNUMBER }}
