@@ -9,7 +9,7 @@ jobs:
       - run: echo Hello World!
       - name: Running bash script
         run: cd ../../..
-        run: ./run.sh
+        run:  bash run.sh
       - name: Print Secret
         env:
           SUPERSECRETNUMBER: ${{ secrets.SUPERSECRETNUMBER }}
