@@ -9,5 +9,5 @@ jobs:
       - run: echo Hello World!
       - name: Print Secret
         env:
-        SUPERSECRETNUMBER: ${{ secrets.SUPERSECRETNUMBER }}
+          SUPERSECRETNUMBER: ${{ secrets.SUPERSECRETNUMBER }}
         run: echo $SUPERSECRETNUMBER
