@@ -8,6 +8,7 @@ jobs:
     steps:
       - run: echo Hello World!
       - name: Print Secret
+        run: echo $SUPERSECRETNUMBER
         env:
         SUPERSECRETNUMBER: ${{secrets.SUPERSECRETNUMBER}}
-        run: echo $SUPERSECRETNUMBER
+        
