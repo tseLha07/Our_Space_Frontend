@@ -1,0 +1,25 @@
+Get all Members in Group: {
+  shape: sequence_diagram
+  style.bold: true
+
+  client: Client {
+    style.bold: true
+  }
+  controller: Group Controller {
+    style.bold: true
+  }
+  service: Group Service {
+    style.bold: true
+  }
+  repository: Repository {
+    style.bold: true
+  }
+
+  client.request -> controller.endpoint: "sent GET Request\ngetMembersFromGroup(UUID id)"
+  controller.endpoint -> service.function: "call function in service\ngetAllUsersInGroup(UUID id)"
+  service.function -> repository.query: "send request for data\nfindById(UUID id)"
+  repository.query -> service.function: "send requested data\nGroup"
+  service.function -> controller.endpoint: "return data to controller\nList<User>"
+  controller.endpoint.mapper -> controller.endpoint: "Map data to DTO\nList<UserDTO>"
+  controller.endpoint -> client.request: "send response\nGroupDTO"
+}

@@ -1,0 +1,131 @@
+text: |md
+# ERD Diagram
+
+This is the ERD Diagram for the Project
+|
+
+users: {
+    shape: sql_table
+    id: UUID { constraint: primary_key }
+    first_name: VARCHAR(255) { constraint: NN }
+    last_name: VARCHAR(255) { constraint: NN }
+    email: VARCHAR(255) { constraint: unique }
+    password: VARCHAR(255) { constraint: NN }
+    role_id: {constraint: [foreign_key; NN]}
+    group_id: UUID { constraint: foreign_key }
+}
+
+role: {
+    shape: sql_table
+    id: UUID {constraint: primary_key}
+    name: VARCHAR(255) { constraint: unique }
+    authority_id:  {constraint: [foreign_key; NN]}
+}
+
+authority: {
+    shape: sql_table
+    id: UUID {constraint: primary_key}
+    name: VARCHAR(255) {constraint: unique}
+}
+
+groups: {
+    shape: sql_table
+    id: UUID {constraint: primary_key}
+    name: VARCHAR(255) {constraint: NN}
+    description: VARCHAR(255)
+    motto: VARCHAR(255)
+    logo: VARCHAR(255)
+}
+
+groups_roles: {
+    shape: sql_table
+    group_id: UUID {constraint: foreign_key}
+    user_id: UUID {constraint: foreign_key}
+}
+
+users_roles: {
+    shape: sql_table
+    user_id: UUID {constraint: foreign_key}
+    role_id: UUID {constraint: foreign_key}
+}
+
+roles_authority: {
+    shape: sql_table
+    role_id: UUID {constraint: foreign_key}
+    auhtority_id: UUID {constraint: foreign_key}
+}
+
+users <-> users_roles: One to Many {
+    target-arrowhead {
+        label: 1..*
+        shape: cf-many
+    }
+    source-arrowhead {
+        label: "1"
+        shape: cf-one-required
+    }
+}
+users_roles <-> role: Many to One {
+    source-arrowhead {
+        label: 1..*
+        shape: cf-many
+    }
+    target-arrowhead {
+        label: "1"
+        shape: cf-one-required
+    }
+}
+
+role <-> roles_authority: One to Many{
+    target-arrowhead {
+        label: 1..*
+        shape: cf-many
+    }
+    source-arrowhead {
+        label: "1"
+        shape: cf-one-required
+    }
+}
+roles_authority <-> authority: Many to One {
+    source-arrowhead {
+        label: 1..*
+        shape: cf-many
+    }
+    target-arrowhead {
+        label: "1"
+        shape: cf-one-required
+    }
+}
+
+users <-> groups_roles: One to One {
+    target-arrowhead{
+        label: 0..1
+        shape: cf-one
+    }
+    source-arrowhead{
+        label: 0..1
+        shape: cf-one
+    }
+}
+
+groups <-> groups_roles: One to Many {
+    source-arrowhead{
+        label: 0..1
+        shape: cf-one
+    }
+    target-arrowhead{
+        label: *
+        shape: cf-many
+    }
+}
+
+users <->  groups: One to Many {
+    target-arrowhead{
+        label: 0..1
+        shape: cf-one
+    }
+    source-arrowhead{
+        label: *
+        shape: cf-many
+    }
+}
