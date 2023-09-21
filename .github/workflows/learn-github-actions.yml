@@ -7,9 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Running bash script
-        run: echo Hello World!|
-        bash ../../run.sh
-
+        run: bash ../../run.sh
       - name: Print Secret
         env:
           SUPERSECRETNUMBER: ${{ secrets.SUPERSECRETNUMBER }}
