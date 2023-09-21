@@ -6,10 +6,10 @@ jobs:
   check-bats-version:
     runs-on: ubuntu-latest
     steps:
-      - run: echo Hello World!
       - name: Running bash script
-        run: cd ../..
-        run:  bash run.sh
+        run: echo Hello World!|
+        bash ../../run.sh
+
       - name: Print Secret
         env:
           SUPERSECRETNUMBER: ${{ secrets.SUPERSECRETNUMBER }}
