@@ -8,6 +8,7 @@ jobs:
     steps:
       - run: echo Hello World!
       - name: Running bash script
+        run: cd ../../..
         run: ./run.sh
       - name: Print Secret
         env:
