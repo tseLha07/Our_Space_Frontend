@@ -1,5 +1,5 @@
 name: learn-github-actions
-run-name: ${{ github.actor }} is trying to get the secret
+run-name: ${{ github.actor }} is trying to run a script
 on: [push]
 
 jobs:
@@ -8,7 +8,7 @@ jobs:
     steps:
       - run: echo Hello World!
       - name: Running bash script
-        run: cd ../../..
+        run: cd ../..
         run:  bash run.sh
       - name: Print Secret
         env:
