@@ -1,5 +1,5 @@
 name: learn-github-actions
-run-name: ${{ github.actor }} is trying to run a script
+run-name: ${{ github.actor }} is trying to run a script remotely on a server
 on: [push]
 
 jobs:
