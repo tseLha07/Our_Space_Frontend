@@ -2,9 +2,9 @@ name: build_test_react
 run-name: ${{ github.actor }} is trying to build the application
 on:
   push:
-    branches: [tselha]
+    branches: [main]
   pull_request:
-    branches: [tselha]
+    branches: [main]
 jobs:
   build_and_test:
     runs-on: ubuntu-latest
