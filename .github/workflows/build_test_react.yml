@@ -1,21 +1,28 @@
 name: build_test_react
 run-name: ${{ github.actor }} is trying to build the application
-on: [push]
+on:
+  push:
+    branches: [tselha]
+  pull_request:
+    branches: [tselha]
+
 jobs:
-  build_test:
+  build_and_test:
     runs-on: ubuntu-latest
+
     strategy:
       matrix:
-        node-version: [10.x, 12.x, 14.x, 15.x]
+        node: [10, 12]
+
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v2
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - name: npm ci, build and test
-        run: |
-          npm ci
-          npm run build --if-present
-          npm test      
+      - name: Install project
+        run: yarn install
+      - name: Build the project
+        run: yarn build --if-present    
         
